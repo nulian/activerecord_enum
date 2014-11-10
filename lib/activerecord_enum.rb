@@ -21,7 +21,7 @@ module ActiveRecord
         if field_type =~ /enum|set/i
           $&.to_sym
         else
-          simplified_type field_type
+          #simplified_type field_type
         end
       end
 
