@@ -21,7 +21,7 @@ module ActiveRecord
         if field_type =~ /enum|set/i
           $&.to_sym
         else
-          #simplified_type field_type
+          field_type
         end
       end
 
@@ -47,6 +47,20 @@ module ActiveRecord
 
       def enum?
         type == :enum
+      end
+    end
+  end
+end
+module ActiveRecord
+  module Type
+    class Enum
+      def type
+        :enum
+      end
+
+      def initialize(options = {})
+        options.assert_valid_keys(:limit)
+        @limit = options[:limit]
       end
     end
   end
